@@ -1,0 +1,9 @@
+<div>
+    <h1>I am the Third Component {{name}}</h1>
+    <input type="text" [value]="name">
+    <h3 [class] = 'myClass' [innerText]="name"></h3>
+    <button (click)="plus()">Click Me</button>
+    <h4 >Count is {{count}}</h4>
+    <h4 [ngClass]="colorCond">NG CLASS</h4>
+    <h5 [ngStyle]="{'background-color':count>5?'red':'green'}">NGSTYLE</h5>
+</div>
