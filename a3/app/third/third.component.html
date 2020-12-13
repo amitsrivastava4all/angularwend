@@ -1,0 +1,72 @@
+<div>
+    <h1>I am the Third Component {{name}}</h1>
+    <input type="text" [value]="name">
+    <h3 [class] = 'myClass' [innerText]="name"></h3>
+
+    <br>
+    <input type='text' placeholder="Type Text Here"
+     (input)="takeInput($event)"/>
+    Text is  {{str}}
+    <br>
+    <hr>
+    Names are <br>
+    <ul *ngFor="let name of names; let i=index">
+        <li>{{i+1}} &nbsp;{{name}}</li>
+    </ul>
+    <button (click)="plus()">Click Me</button>
+    <h4 >Count is {{count}}</h4>
+    <div [ngSwitch]="count">
+        <p *ngSwitchCase="1">One</p>
+        <p *ngSwitchCase="2">Two</p>
+        <p *ngSwitchCase="3">Three</p>
+
+        <p *ngSwitchCase="4">Four</p>
+        <p *ngSwitchDefault>UnKnown Value</p>
+    </div>
+
+    <p>Customers are </p>
+    <p>My Obj is {{myobj|json}}</p>
+    <table border='1'>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>DOJ</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr *ngFor="let customer of customers; let i=index">
+                <td>{{i+1 |prefixpipe:'AP':'LE'}}</td>
+                <ng-template #upper>
+                    <p>{{customer.name.toUpperCase()}}</p>
+                </ng-template>
+                <ng-template #lower>
+                    <strong>{{customer.name}}</strong>
+                </ng-template>
+                <td >
+                    <div *ngIf="customer.name.length>4;then upper else lower">
+
+                    </div>
+                    <!-- <p *ngIf="customer.name.length>4">{{customer.name.toUpperCase()}}</p> {{customer.name}} -->
+                </td>
+                <td>{{customer.phone|currency:'INR':true:'2.2-4'}}</td>
+                <!-- <td>{{customer.phone|number}}</td> -->
+                <td>{{customer.email|titlecase|slice:0:3}}</td>
+                <!-- <td>{{customer.email|uppercase}}</td> -->
+                <td>{{customer.doj|date:'long'}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <hr>
+    <p>2 Way data binding</p>
+    <input type="text" [(ngModel)]="str2"/>
+    Str2 is {{str2}}
+
+    <h4 [ngClass]="colorCond">NG CLASS</h4>
+    <h5 [ngStyle]="{'background-color':count>5?'red':'green'}">NGSTYLE</h5>
+</div>
